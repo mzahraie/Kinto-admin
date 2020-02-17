@@ -1,6 +1,8 @@
 module.exports = {
   "root": true,
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended",
+  "plugin:vue/recommended"
+   ],
   "globals": {
     "window": true,
     "document": true,
@@ -32,7 +34,7 @@ module.exports = {
     "import",
     "html",
     "jsx-a11y",
-    "vue/recommended"
+    "vue"
   ],
   "settings": {
     "import/core-modules": [],
