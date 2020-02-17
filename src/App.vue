@@ -1,28 +1,60 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <el-container id="app">
+    <el-header><Header></Header></el-header>
+    <el-container>
+      <el-aside width="310px">
+        <Sidebar ></Sidebar>
+      </el-aside>
+      <el-main>
+        <router-view>
+        
+        </router-view>
+                  
+      </el-main>
+    </el-container>
+    <el-footer class="footer" >  
+          <el-link type="primary" href="https://github.com/Kinto/kinto-admin" target="_blank">
+            Powered by Masoom
+          </el-link>
+    </el-footer>
+  </el-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 export default {
-  name: 'app',
+  data() {
+            return {
+            //  buckets: [
+            //     'default'
+            //     ],
+                authenticated: false
+            }
+        },
+        mounted() {
+            if(!this.authenticated) {
+                this.$router.replace({ name: "home" });
+            }
+        },
+        methods: {
+            setAuthenticated() {
+                this.authenticated = true;
+            },
+            logout() {
+                this.authenticated = false;
+            }
+        },
   components: {
-    HelloWorld
+    Header,
+    Sidebar
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.footer {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  border-top: 1px solid #ccc;
 }
 </style>
