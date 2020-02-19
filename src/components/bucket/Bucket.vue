@@ -52,7 +52,7 @@ export default {
           } 
         }
       });
-      this.bucketId = "";
+      this.$router.push('/create/bucket/bucketId');
     }
   }
 };

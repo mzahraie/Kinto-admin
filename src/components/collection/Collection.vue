@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Create a new collection in ... bucket</h1>
+        <h1>Create a new collection in {{bucketId}} bucket</h1>
         <el-card shadow="never">
             <el-form>
                 <el-form-item label="Collection id" required>
@@ -25,13 +25,15 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     data(){
         return{
-            collectionId: ""
+            collectionId: "",
+            bucketId: this.$route.params.bucketId
         };
     },
-    props: bucketId,
     methods: {
         createNewCollection(){
             console.log("Creating collection: " + this.collectionId);
@@ -44,10 +46,11 @@ export default {
                 url: "http://localhost:8888/v1/buckets/" + this.bucketId + "/collections",
                 data: {
                 data:{
-                    id: this.bucketId
+                    id: this.collectionId
                 } 
         }
-      });
+            });
+            this.collectionId= "";
         }
     }
 }
