@@ -37,8 +37,6 @@ export default {
   props: ["buckets"],
   methods: {
     createNewBucket() {
-      // this.$emit('bucketAdded', this.bucketId);
-      // this.buckets.push(this.bucketId);
       console.log("Creating bucket: " + this.bucketId);
       bus.$emit("bucketAdded", this.bucketId);
       axios({
